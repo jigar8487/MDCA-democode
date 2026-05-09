@@ -41,6 +41,34 @@ flowchart LR
   Agents --> Langfuse
 ```
 
+## Screenshots (demo deployment)
+
+Static captures from a real **MDCA DEMO**–style setup: **Jira** for task tracking, **Discord** for the orchestrator conversation, and **[Langfuse](https://langfuse.com)** for traces and costs. Your own boards and URLs will differ; these illustrate how the pieces fit together.
+
+### Jira Cloud — project summary
+
+![Jira project dashboard — MDCA DEMO summary](docs/screenshots/jira-mdca-demo-summary.png)
+
+Board overview (status mix, recent activity, workload). The Python orchestrator can open placeholder issues via the Jira REST API using `JIRA_*` and Atlassian credentials from [`.env.example`](.env.example).
+
+### Discord — orchestrator thread
+
+![Discord thread — task / planner / agent flow](docs/screenshots/discord-orchestrator-task-thread.png)
+
+Example channel thread showing a scoped request (e.g. event invitation + guest verification), planner output, and downstream agent discussion. Approval is **keyword-based** in [`wanddy_orchestrator.py`](wanddy_orchestrator.py). The exact stack shown in a screenshot may differ from the committed sample under [`generated_app/`](generated_app/README.md); treat it as **workflow illustration**, not a spec for one fixed repo layout.
+
+### Langfuse — trace detail
+
+![Langfuse — wanddy orchestration trace tree](docs/screenshots/langfuse-trace-wanddy-orchestration.png)
+
+Trace hierarchy such as `wanddy-orchestration-iteration` → `scan-discord` / `handle-thread-reply` → `execute-agent-chain` with nested **developer / tech-lead / QA** agent generations. Token and cost metadata appear per generation when using the instrumented clients from [`langfuse_setup.py`](langfuse_setup.py).
+
+### Langfuse — project home
+
+![Langfuse — traces, costs, latency](docs/screenshots/langfuse-dashboard-home.png)
+
+Project-level view: trace counts by name, **model costs** (e.g. OpenRouter / OpenAI-style models), latency percentiles, and observation volume — useful for pilot cost and performance checks.
+
 ## Prerequisites
 
 - **Python 3.10+** (required for orchestrator scripts; CI tests 3.10 and 3.12).
