@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution>
+  <Projects>
+    <Project Include="doctor-appointment-booking-system.Api\doctor-appointment-booking-system.Api.csproj" />
+  </Projects>
+</Solution>

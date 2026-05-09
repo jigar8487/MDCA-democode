@@ -4,7 +4,7 @@
 
 **No responsibility — Jigar Joshi and Wan Buffer Services.** **Jigar Joshi** and **Wan Buffer Services** accept **no responsibility or liability** for this code or your use of it (including indirect or consequential damages, data loss, security incidents, regulatory exposure, or business interruption). This project is provided **as-is**; any use is **at your sole risk**. The [Unlicense](LICENSE) applies to the software; this notice is an additional clarification regarding named parties.
 
-Python utilities that watch a Discord orchestrator channel, optionally create Jira issues, run a **planner** LLM step (traced in [Langfuse](https://langfuse.com)), and on user **approve** run a sequential multi-agent chain that can write scaffold code under `generated_app/` (ignored by git in this template).
+Python utilities that watch a Discord orchestrator channel, optionally create Jira issues, run a **planner** LLM step (traced in [Langfuse](https://langfuse.com)), and on user **approve** run a sequential multi-agent chain that writes scaffold code under [`generated_app/`](generated_app/README.md). The repo includes **one committed sample** (`doctor-appointment-booking-system/`) as illustration; other generated slugs stay gitignored by default.
 
 ## Architecture
 
@@ -14,6 +14,7 @@ Python utilities that watch a Discord orchestrator channel, optionally create Ji
 - **`agents.py`** — Role-based LLM “agents” with file-write envelope for the developer role.
 - **`langfuse_setup.py`** — Langfuse + OpenRouter (OpenAI-compatible) client setup.
 - **`agent_write_guard.py`** — Rules for LLM file writes under `generated_app/` (testable without Langfuse).
+- **`generated_app/`** — Agent output directory; includes sample **`doctor-appointment-booking-system/`** (.NET 9 API + Vite React 18). See [`generated_app/README.md`](generated_app/README.md).
 
 ```mermaid
 flowchart LR
@@ -101,7 +102,7 @@ GitHub Actions runs the same suite (and a syntax check) on Python 3.10 and 3.12 
 
 - Never commit **`.env`** or real tokens. Rotate any credential that was ever exposed.
 - Use least-privilege Discord and Atlassian tokens.
-- `generated_app/` is gitignored so generated code is not accidentally published; review outputs before sharing.
+- Only the **sample** under `generated_app/doctor-appointment-booking-system/` is tracked; other generated folders are gitignored. Review any output before sharing or committing additional slugs.
 
 ## License
 

@@ -6,7 +6,17 @@
 .cursor/
 # Machine-local Claude permissions (do not publish)
 .claude/settings.local.json
-generated_app/
+# Agent output: only the doctor sample + this README are tracked (see generated_app/README.md)
+generated_app/*
+!generated_app/README.md
+!generated_app/doctor-appointment-booking-system/
+!generated_app/doctor-appointment-booking-system/**
+
+generated_app/doctor-appointment-booking-system/**/node_modules/
+generated_app/doctor-appointment-booking-system/**/dist/
+generated_app/doctor-appointment-booking-system/**/bin/
+generated_app/doctor-appointment-booking-system/**/obj/
+generated_app/doctor-appointment-booking-system/**/*.tsbuildinfo
 .DS_Store
 .claude/.DS_Store
 .claude/skills/.DS_Store
