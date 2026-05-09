@@ -1,0 +1,46 @@
+.env
+.env.*
+!.env.example
+.mcp.json
+!.mcp.json.example
+.cursor/
+# Machine-local Claude permissions (do not publish)
+.claude/settings.local.json
+generated_app/
+.DS_Store
+.claude/.DS_Store
+.claude/skills/.DS_Store
+.claude/agent-bus/active/
+.claude/agent-bus/queue/
+.claude/agent-bus/completed/
+.claude/agent-bus/reviews/
+# Claude Code runtime locks / pids (sessionId, pid, timestamps — never commit)
+.claude/*.lock
+.claude/**/*.lock
+.claude/*.pid
+.claude/**/*.pid
+.venv/
+.venv-*/
+venv/
+node_modules/
+*.pyc
+__pycache__/
+
+# .NET build artifacts
+bin/
+obj/
+
+# Vite / web build artifacts
+dist/
+*.tsbuildinfo
+
+.claude/agent-bus/bus.log
+
+# Runtime state (re-created on each session)
+.claude/agent-bus/orchestrator_state.json
+.claude/agent-bus/status_board_message_id.txt
+.claude/agent-bus/wanddy_presence.log
+
+# Scratch / accidental editor files
+Untitled
+.claude/agent-bus/Untitled

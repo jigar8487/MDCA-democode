@@ -1,0 +1,8 @@
+# Direct dependencies (pinned for reproducible installs / CI).
+langfuse==4.6.1
+anthropic==0.100.0
+openai==2.36.0
+opentelemetry-instrumentation-anthropic==0.60.0
+python-dotenv==1.2.2
+requests==2.33.1
+websockets==16.0

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check (tracked Python files)
+        run: |
+          python - <<'PY'
+          import subprocess
+          import py_compile
+
+          files = subprocess.check_output(
+              ["git", "ls-files", "-z", "--", "*.py"],
+              text=False,
+          ).split(b"\0")[:-1]
+          for path in files:
+              py_compile.compile(path.decode(), doraise=True)
+          print(f"py_compile ok: {len(files)} file(s)")
+          PY
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v

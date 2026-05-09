@@ -1,0 +1,34 @@
+{
+  "hooks": [
+    {
+      "event": "PostToolUse",
+      "matcher": {
+        "tool_name": "Bash",
+        "command_pattern": "git commit"
+      },
+      "command": "source scripts/jira_discord_bridge/hooks.sh && hook_on_commit",
+      "description": "Post commit notification to Discord and update linked Jira ticket",
+      "timeout_ms": 10000
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": {
+        "tool_name": "Bash",
+        "command_pattern": "gh pr create"
+      },
+      "command": "source scripts/jira_discord_bridge/hooks.sh && hook_on_pr_created \"$(gh pr view --json title -q .title 2>/dev/null)\" \"$(gh pr view --json url -q .url 2>/dev/null)\" \"$(git branch --show-current)\"",
+      "description": "Post PR creation notification to Discord technical channel",
+      "timeout_ms": 15000
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": {
+        "tool_name": "Bash",
+        "command_pattern": "dotnet ef database update"
+      },
+      "command": "source scripts/jira_discord_bridge/hooks.sh && hook_on_db_migration_from_tool_input",
+      "description": "Post EF Core migration notification to Discord when database schema is updated",
+      "timeout_ms": 10000
+    }
+  ]
+}
