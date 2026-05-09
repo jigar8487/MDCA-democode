@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution>
+  <Projects>
+    <Project Include="event-invitation-guest-verification.Api\event-invitation-guest-verification.Api.csproj" />
+  </Projects>
+</Solution>

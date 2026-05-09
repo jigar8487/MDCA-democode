@@ -2,8 +2,13 @@
 
 The orchestrator’s developer agent writes new apps here (`generated_app/<slug>/`).
 
-**What is in git:** One **sample** scaffold — [`doctor-appointment-booking-system/`](doctor-appointment-booking-system/) — so clones include an example of agent-generated .NET 9 + React 18 code. It was produced by the multi-agent flow (not hand-maintained as a product).
+**What is in git:** Two **sample** scaffolds produced by the agent flow (not hand-maintained products):
 
-**What stays local:** Any other slugs you generate are **gitignored** so accidental noise (`node_modules`, other experiments) is not published. After `npm install` / `dotnet build`, build artifacts under this tree remain ignored when applicable.
+| Sample | Stack | Purpose |
+|--------|--------|---------|
+| [`doctor-appointment-booking-system/`](doctor-appointment-booking-system/) | .NET 9 API + Vite React 18 | Doctor search / booking illustration |
+| [`event-invitation-guest-verification/`](event-invitation-guest-verification/) | .NET 9 API + Vite React 18 | Guest mobile verify → invitation → attendance (**UI review** screenshots in root [README](../README.md)) |
 
-To run the sample, see `doctor-appointment-booking-system/frontend/README.md` and the backend `.csproj` under `backend/`.
+**What stays local:** Any other slugs you generate are **gitignored** so accidental noise (`node_modules`, one-off experiments) is not published.
+
+**Run:** See each sample’s `README.md` (doctor: `frontend/` + `backend/`; event invitation: same layout).
